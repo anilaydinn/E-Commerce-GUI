@@ -8,11 +8,13 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
-public class LoginPage extends JFrame {
+public class CustomerLoginPage extends JFrame {
 
 	private JPanel contentPane;
 	private DatabaseOperations databaseOperations = DatabaseOperations.getDatabaseOperations();
@@ -20,25 +22,9 @@ public class LoginPage extends JFrame {
 	private JPasswordField pfPassword;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginPage frame = new LoginPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public LoginPage() {
+	public CustomerLoginPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 661, 510);
 		contentPane = new JPanel();
@@ -61,9 +47,13 @@ public class LoginPage extends JFrame {
 				String password = new String(pfPassword.getPassword());
 				
 				if(databaseOperations.loginCustomer(username, password)) {
-					ProductListPage productListPage = new ProductListPage();
+					ProductListPage productListPage = new ProductListPage(username);
 					setVisible(false);
 					productListPage.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Username or password incorrect !");
+					return;
 				}
 			}
 		});

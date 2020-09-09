@@ -1,5 +1,5 @@
 
-public class Customer extends User {
+public class Customer extends User implements IUser {
 
 	private String name;
 	private String surname;
@@ -9,8 +9,9 @@ public class Customer extends User {
 	private String phone;
 	private String city;
 	private String country;
+	private double balance;
 	
-	public Customer(String username, String password, String name, String surname, int age, String gender, String address, String phone, String city, String country) {
+	public Customer(String username, String password, String name, String surname, int age, String gender, String address, String phone, String city, String country,double balance) {
 		super(username, password);
 		this.name = name;
 		this.surname = surname;
@@ -20,7 +21,10 @@ public class Customer extends User {
 		this.phone = phone;
 		this.city = city;
 		this.country = country;
+		this.balance = balance;
 	}
+	
+	public Customer() {}
 
 	public String getName() {
 		return name;
@@ -85,12 +89,17 @@ public class Customer extends User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	@Override
-	public String toString() {
-		return "Customer " + name + " " + surname + " " + age + " " + gender + " " + address + " " + phone + " " + city + " " + country;
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 	
-	
+	public double getBalance() {
+		return this.balance;
+	}
 
+	@Override
+	public String writeInformation() {
+		return getUsername() + " " + getName() + " " + getSurname() + " " + getAge() + " " + getGender() + " " + getAddress() + " " + getPhone() + " " + getCity() + " " + getCountry();
+	}
 }

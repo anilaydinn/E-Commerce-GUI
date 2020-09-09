@@ -30,6 +30,7 @@ public class RegisterPage extends JFrame {
 	private DatabaseOperations databaseOperations = DatabaseOperations.getDatabaseOperations();
 	private JTextField tfUsername;
 	private JPasswordField pfPassword;
+	private UserFactory userFactory = new UserFactory();
 
 	/**
 	 * Create the frame.
@@ -174,7 +175,19 @@ public class RegisterPage extends JFrame {
 					return;				
 				}
 				
-				if(databaseOperations.addCustomer(name, surname, username, password, age, gender, address, phone, city, country)) {
+				Customer customer = (Customer) userFactory.getUser("CUSTOMER");
+				customer.setName(name);
+				customer.setSurname(surname);
+				customer.setUsername(username);
+				customer.setPassword(password);
+				customer.setAge(age);
+				customer.setGender(gender);
+				customer.setAddress(address);
+				customer.setPhone(phone);
+				customer.setCity(city);
+				customer.setCountry(country);
+				
+				if(databaseOperations.addCustomer(customer)) {
 					JOptionPane.showMessageDialog(null, "Registration succesful !");
 					tfName.setText("");
 					tfSurname.setText("");
@@ -198,7 +211,7 @@ public class RegisterPage extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginPage loginPage = new LoginPage();
+				CustomerLoginPage loginPage = new CustomerLoginPage();
 				setVisible(false);
 				loginPage.setVisible(true);
 			}
