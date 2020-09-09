@@ -47,7 +47,7 @@ public class CustomerLoginPage extends JFrame {
 				String password = new String(pfPassword.getPassword());
 				
 				if(databaseOperations.loginCustomer(username, password)) {
-					ProductListPage productListPage = new ProductListPage(username);
+					CategoryListPage productListPage = new CategoryListPage(username);
 					setVisible(false);
 					productListPage.setVisible(true);
 				}

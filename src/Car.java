@@ -1,5 +1,5 @@
 
-public class Car extends Product {
+public class Car extends Product implements IProducts {
 	private int motorVolume;
 	private int torque;
 	private String type;
@@ -13,6 +13,8 @@ public class Car extends Product {
 		this.type = type;
 		this.numberOfDoors = numberOfDoors;
 	}
+	
+	public Car() {}
 
 
 	public int getMotorVolume() {
@@ -52,5 +54,11 @@ public class Car extends Product {
 
 	public void setNumberOfDoors(int numberOfDoors) {
 		this.numberOfDoors = numberOfDoors;
+	}
+
+
+	@Override
+	public String writeInformation() {
+		return getBrand() + " " + getModel() + " " + getPrice() + " " + this.motorVolume + " " + this.numberOfDoors + " " + this.torque + " " + this.type;
 	}
 }

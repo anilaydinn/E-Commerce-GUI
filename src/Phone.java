@@ -1,5 +1,5 @@
 
-public class Phone extends Product {
+public class Phone extends Product implements IProducts {
 	
 	private int ram;
 	private int screenSize;
@@ -13,6 +13,8 @@ public class Phone extends Product {
 		this.isDoubleSim = isDoubleSim;
 		this.processor = processor;
 	}
+	
+	public Phone() {}
 
 	public int getRam() {
 		return ram;
@@ -45,4 +47,10 @@ public class Phone extends Product {
 	public void setProcessor(String processor) {
 		this.processor = processor;
 	}
+
+	@Override
+	public String writeInformation() {
+		return getBrand() + " " + getModel() + " " + getPrice() + " " + this.processor + " " + this.ram + " " + this.screenSize;
+	}
+	
 }

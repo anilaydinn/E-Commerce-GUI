@@ -1,5 +1,5 @@
 
-public class Computer extends Product {
+public class Computer extends Product implements IProducts {
 	private String ram;
 	private String graphicCard;
 	private String processor;
@@ -12,6 +12,8 @@ public class Computer extends Product {
 		this.processor = processor;
 		this.operatingSystem = operatingSystem;
 	}
+	
+	public Computer() {}
 
 	public String getRam() {
 		return ram;
@@ -44,7 +46,9 @@ public class Computer extends Product {
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
-	
-	
-	
+
+	@Override
+	public String writeInformation() {
+		return getBrand() + " " + getModel() + " " + getPrice() + " " + this.graphicCard + " " + this.operatingSystem + " " + this.processor + " " + this.ram;
+	}
 }

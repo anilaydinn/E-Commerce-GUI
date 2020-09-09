@@ -9,6 +9,8 @@ public class Product {
 		this.model = model;
 		this.price = price;
 	}
+	
+	public Product() {}
 
 	public double getPrice() {
 		return price;

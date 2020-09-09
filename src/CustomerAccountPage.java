@@ -48,6 +48,16 @@ public class CustomerAccountPage extends JFrame {
 		});
 		btnAddCash.setBounds(410, 50, 117, 25);
 		contentPane.add(btnAddCash);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CategoryListPage categoryListPage = new CategoryListPage(username);
+				setVisible(false);
+				categoryListPage.setVisible(true);
+			}
+		});
+		btnBack.setBounds(27, 346, 140, 63);
+		contentPane.add(btnBack);
 	}
-
 }
