@@ -153,4 +153,55 @@ public class DatabaseOperations {
 			return;
 		}
 	}
+	
+	public Computer getComputerByBrand(String brand) {
+		String query = "SELECT * FROM Computer WHERE brand = ?";
+		Computer computer = new Computer();
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, brand);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				computer.setBrand(rs.getString("brand"));
+				computer.setModel(rs.getString("model"));
+				computer.setGraphicCard(rs.getString("graphicCard"));
+				computer.setOperatingSystem(rs.getString("operatingSystem"));
+				computer.setPrice(rs.getDouble("price"));
+				computer.setProcessor(rs.getString("processor"));
+				computer.setRam(rs.getString("ram"));
+			}
+			return computer;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Phone getPhoneByBrand(String brand) {
+		String query = "SELECt * FROM Phone WHERE brand = ?";
+		Phone phone = new Phone();
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, brand);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				phone.setBrand(rs.getString("brand"));
+				phone.setModel(rs.getString("model"));
+				phone.setDoubleSim(rs.getBoolean("isDoubleSim"));
+				phone.setScreenSize(rs.getInt("screenSize"));
+				phone.setPrice(rs.getDouble("price"));
+				phone.setProcessor(rs.getString("processor"));
+				phone.setRam(rs.getString("ram"));
+			}
+			return phone;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class CategoryListPage extends JFrame {
 
@@ -69,7 +70,7 @@ public class CategoryListPage extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				TechnologyProductPage technologyProductPage = new TechnologyProductPage(username);
+				TechnologyProductsPage technologyProductPage = new TechnologyProductsPage(username);
 				setVisible(false);
 				technologyProductPage.setVisible(true);
 			}
@@ -83,6 +84,16 @@ public class CategoryListPage extends JFrame {
 		lblAutomotive.setBounds(583, 156, 128, 128);
 		contentPane.add(lblAutomotive);
 		lblAutomotive.setIcon(carImage);
+		
+		JLabel lblTechnologyText = new JLabel("Technology");
+		lblTechnologyText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblTechnologyText.setBounds(195, 296, 115, 19);
+		contentPane.add(lblTechnologyText);
+		
+		JLabel lblAutomotiveText = new JLabel("Automotive");
+		lblAutomotiveText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblAutomotiveText.setBounds(593, 296, 115, 19);
+		contentPane.add(lblAutomotiveText);
 		
 		
 	}

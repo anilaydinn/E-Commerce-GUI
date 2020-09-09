@@ -1,12 +1,12 @@
 
 public class Phone extends Product implements IProducts {
 	
-	private int ram;
+	private String ram;
 	private int screenSize;
 	private boolean isDoubleSim;
 	private String processor;
 	
-	public Phone(String brand, String model, double price, int ram, int screenSize, boolean isDoubleSim, String processor) {
+	public Phone(String brand, String model, double price, String ram, int screenSize, boolean isDoubleSim, String processor) {
 		super(brand, model, price);
 		this.ram = ram;
 		this.screenSize = screenSize;
@@ -16,11 +16,11 @@ public class Phone extends Product implements IProducts {
 	
 	public Phone() {}
 
-	public int getRam() {
+	public String getRam() {
 		return ram;
 	}
 
-	public void setRam(int ram) {
+	public void setRam(String ram) {
 		this.ram = ram;
 	}
 
