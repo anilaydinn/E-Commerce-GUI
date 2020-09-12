@@ -34,6 +34,7 @@ public class CarProductDetailsPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle(car.getBrand() + " " + car.getModel());
 		
 		JLabel lblBrandModel = new JLabel("");
 		lblBrandModel.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -63,7 +64,7 @@ public class CarProductDetailsPage extends JFrame {
 		lblMotorVolume.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblMotorVolume.setBounds(196, 124, 295, 15);
 		contentPane.add(lblMotorVolume);
-		lblMotorVolume.setText("Motor Volume: " + this.car.getMotorVolume());
+		lblMotorVolume.setText("Motor Volume: " + this.car.getMotorVolume() + " cc");
 		
 		JLabel lblType = new JLabel("");
 		lblType.setFont(new Font("Dialog", Font.BOLD, 16));

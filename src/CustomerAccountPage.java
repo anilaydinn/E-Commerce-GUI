@@ -36,6 +36,7 @@ public class CustomerAccountPage extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setTitle("Customer Account");
 		
 		JList jlCart = new JList();
 		jlCart.setBounds(287, 107, 286, 228);

@@ -41,6 +41,7 @@ public class CustomerOrAdminPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle("Customer Or Admin");
 		
 		JButton btnAdmin = new JButton("Admin Login");
 		btnAdmin.addActionListener(new ActionListener() {

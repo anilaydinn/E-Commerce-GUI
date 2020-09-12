@@ -32,6 +32,7 @@ public class AdminLoginPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle("Admin Login");
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Dialog", Font.BOLD, 14));

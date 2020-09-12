@@ -27,6 +27,7 @@ public class CategoryListPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle("Category Select");
 		
 		ImageIcon userImage = new ImageIcon("img/user.png");
 		JLabel lblUserImg = new JLabel("");

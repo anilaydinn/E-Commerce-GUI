@@ -14,6 +14,8 @@ public class DatabaseOperations {
 	
 	private Connection con = null;
 	private PreparedStatement preparedStatement = null;
+	private ProductFactory productFactory = FactoryFlyWeight.createFactory(1);
+	Customer customerModel = new Customer();
 	
 	//Singleton
 	private static DatabaseOperations databaseOperations = new DatabaseOperations();
@@ -161,7 +163,7 @@ public class DatabaseOperations {
 	
 	public Computer getComputerByBrand(String brand) {
 		String query = "SELECT * FROM Computer WHERE brand = ?";
-		Computer computer = new Computer();
+		Computer computer = (Computer)productFactory.getProduct("COMPUTER");
 		try {
 			preparedStatement = con.prepareStatement(query);
 			
@@ -186,7 +188,7 @@ public class DatabaseOperations {
 	
 	public Phone getPhoneByBrand(String brand) {
 		String query = "SELECt * FROM Phone WHERE brand = ?";
-		Phone phone = new Phone();
+		Phone phone = (Phone)productFactory.getProduct("PHONE");
 		
 		try {
 			preparedStatement = con.prepareStatement(query);
@@ -212,7 +214,7 @@ public class DatabaseOperations {
 	
 	public Customer getCustomerByUsername(String username) {
 		String query = "SELECT * FROM Customer WHERE username = ?";
-		Customer customer = new Customer();
+		Customer customer = (Customer) customerModel.clone();
 		
 		try {
 			preparedStatement = con.prepareStatement(query);
@@ -242,7 +244,7 @@ public class DatabaseOperations {
 	
 	public Car getCarByBrand(String brand) {
 		String query = "SELECT * FROM Car WHERE brand = ?";
-		Car car = new Car();
+		Car car = (Car)productFactory.getProduct("CAR");
 		
 		try {
 			preparedStatement = con.prepareStatement(query);

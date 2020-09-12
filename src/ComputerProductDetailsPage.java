@@ -19,9 +19,7 @@ import java.awt.event.ActionEvent;
 public class ComputerProductDetailsPage extends JFrame {
 
 	private JPanel contentPane;
-	private Product product;
 	private Computer computer;
-	private Phone phone;
 	private DatabaseOperations databaseOperations = DatabaseOperations.getDatabaseOperations();
 	/**
 	 * Create the frame.
@@ -29,7 +27,6 @@ public class ComputerProductDetailsPage extends JFrame {
 	public ComputerProductDetailsPage(String username,Product product, ImageIcon icon) {
 		
 		this.computer = databaseOperations.getComputerByBrand(product.getBrand());
-		this.phone = databaseOperations.getPhoneByBrand(product.getBrand());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 515, 440);
 		contentPane = new JPanel();
@@ -37,6 +34,7 @@ public class ComputerProductDetailsPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle(computer.getBrand() + " " + computer.getModel());
 		
 		JLabel lblBrandModel = new JLabel("");
 		lblBrandModel.setFont(new Font("Dialog", Font.BOLD, 18));

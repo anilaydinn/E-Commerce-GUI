@@ -34,6 +34,7 @@ public class PhoneProductDetailsPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle(phone.getBrand() + " " + phone.getModel());
 		
 		JLabel lblBrandModel = new JLabel("");
 		lblBrandModel.setFont(new Font("Dialog", Font.BOLD, 18));

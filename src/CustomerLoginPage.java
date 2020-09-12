@@ -32,6 +32,7 @@ public class CustomerLoginPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle("Customer Login");
 		
 		tfUsername = new JTextField();
 		tfUsername.setFont(new Font("Dialog", Font.PLAIN, 20));

@@ -1,5 +1,5 @@
 
-public class User {
+public class User implements Cloneable {
 	
 	private String username;
 	private String password;
@@ -26,5 +26,16 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Object clone() {
+		Object clone = null;
+		
+		try {
+			clone = super.clone();
+		}catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return clone;
 	}
 }

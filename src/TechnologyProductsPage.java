@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 public class TechnologyProductsPage extends JFrame {
 
 	private JPanel contentPane;
-	private ProductFactory productFactory = new ProductFactory();
+	private ProductFactory productFactory = FactoryFlyWeight.createFactory(1);
 
 	/**
 	 * Create the frame.
@@ -38,7 +38,7 @@ public class TechnologyProductsPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
-		
+		setTitle("Technology Category");
 		
 		
 		JLabel lblPC1 = new JLabel("");

@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 public class CarProductsPage extends JFrame {
 
 	private JPanel contentPane;
-	private ProductFactory productFactory = new ProductFactory();
+	private ProductFactory productFactory = FactoryFlyWeight.createFactory(1);
 
 	/**
 	 * Create the frame.
@@ -38,6 +38,7 @@ public class CarProductsPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle("Car Category");
 		
 		
 		
