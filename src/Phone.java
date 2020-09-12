@@ -47,6 +47,15 @@ public class Phone extends Product implements IProducts {
 	public void setProcessor(String processor) {
 		this.processor = processor;
 	}
+	
+	public String getDoubleSim() {
+		if(this.isDoubleSim == true) {
+			return "Double Sim";
+		}
+		else {
+			return "One Sim";
+		}
+	}
 
 	@Override
 	public String writeInformation() {

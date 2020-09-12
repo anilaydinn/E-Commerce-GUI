@@ -90,5 +90,16 @@ public class CustomerLoginPage extends JFrame {
 		pfPassword = new JPasswordField();
 		pfPassword.setBounds(137, 324, 368, 41);
 		contentPane.add(pfPassword);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CustomerOrAdminPage customerOrAdminPage = new CustomerOrAdminPage();
+				setVisible(false);
+				customerOrAdminPage.setVisible(true);
+			}
+		});
+		btnBack.setBounds(12, 12, 102, 41);
+		contentPane.add(btnBack);
 	}
 }

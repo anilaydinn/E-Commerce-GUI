@@ -187,6 +187,11 @@ public class RegisterPage extends JFrame {
 				customer.setCity(city);
 				customer.setCountry(country);
 				
+				if (databaseOperations.isUsernameExists(customer.getUsername())) {
+					JOptionPane.showMessageDialog(null, "Username already exist!");
+					return;
+				}
+				
 				if(databaseOperations.addCustomer(customer)) {
 					JOptionPane.showMessageDialog(null, "Registration succesful !");
 					tfName.setText("");
@@ -201,8 +206,6 @@ public class RegisterPage extends JFrame {
 					tfCity.setText("");
 					tfCountry.setText("");
 				}
-				
-				
 			}
 		});
 		btnRegister.setBounds(368, 599, 117, 60);

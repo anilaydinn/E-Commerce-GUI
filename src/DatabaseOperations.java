@@ -3,6 +3,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
+import com.mysql.fabric.xmlrpc.base.Array;
 
 public class DatabaseOperations {
 	
@@ -124,7 +130,6 @@ public class DatabaseOperations {
 				return rs.getDouble("balance");
 			}
 			else {
-				System.out.println("test");
 				return 0;
 			}
 			
@@ -202,6 +207,254 @@ public class DatabaseOperations {
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public Customer getCustomerByUsername(String username) {
+		String query = "SELECT * FROM Customer WHERE username = ?";
+		Customer customer = new Customer();
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, username);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				
+				customer.setName(rs.getString("name"));
+				customer.setSurname(rs.getString("surname"));
+				customer.setAge(rs.getInt("age"));
+				customer.setAddress(rs.getString("address"));
+				customer.setBalance(rs.getDouble("balance"));
+				customer.setCity(rs.getString("city"));
+				customer.setGender(rs.getString("gender"));
+				customer.setCountry(rs.getString("country"));
+				customer.setUsername(rs.getString("username"));
+				customer.setPassword(rs.getString("password"));
+			}
+			return customer;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Car getCarByBrand(String brand) {
+		String query = "SELECT * FROM Car WHERE brand = ?";
+		Car car = new Car();
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, brand);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				car.setBrand(rs.getString("brand"));
+				car.setModel(rs.getString("model"));
+				car.setMotorVolume(rs.getInt("motorVolume"));
+				car.setNumberOfDoors(rs.getInt("numberOfDoors"));
+				car.setPrice(rs.getDouble("price"));
+				car.setTorque(rs.getInt("torque"));
+				car.setType(rs.getString("type"));
+			}
+			return car;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void addProductToCart(String username, Product product) {
+		String query = "INSERT INTO Cart (username, brand, model, price) VALUES (?,?,?,?)";
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, product.getBrand());
+			preparedStatement.setString(3, product.getModel());
+			preparedStatement.setDouble(4, product.getPrice());
+			
+			preparedStatement.executeUpdate();
+			return;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+	
+	public ListModel<Object> updateJList(String username){
+		String query = "SELECT * FROM Cart WHERE username = ?";
+		
+		try {
+			
+			DefaultListModel<Object> model = new DefaultListModel<Object>();
+			
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, username);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				String productString = rs.getString("brand") + " " + rs.getString("model") + " " + rs.getString("price") + " TL";
+				model.addElement(productString);
+			}
+			
+			return model;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void deleteProductByUsername(String username) {
+		String query = "DELETE FROM Cart WHERE username = ?";
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, username);
+			
+			preparedStatement.execute();
+			
+			return;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+	
+	public double getCurrentCartCost(String username) {
+		String query = "SELECT * FROM Cart WHERE username = ?";
+		double totalCost = 0;
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, username);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				totalCost += rs.getDouble("price");
+			}
+			return totalCost;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public void setCustomerBalance(String username, double balance) {
+		String query = "UPDATE Customer SET balance = ? WHERE username = ?";
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setDouble(1, balance);
+			preparedStatement.setString(2, username);
+			
+			preparedStatement.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<Customer> getAllCustomer(){
+		String query = "SELECT * FROM Customer";
+		
+		try {
+			ArrayList<Customer> customers = new ArrayList<Customer>();
+			
+			preparedStatement = con.prepareStatement(query);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String surname = rs.getString("surname");
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				int age = rs.getInt("age");
+				String gender = rs.getString("gender");
+				String address = rs.getString("address");
+				String phone = rs.getString("phone");
+				String city = rs.getString("city");
+				String country = rs.getString("country");
+				double balance = rs.getDouble("balance");
+				
+				customers.add(new Customer(username, password, name, surname, age, gender, address, phone, city, country, balance));
+			}
+			return customers;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean isUsernameExists(String username) {
+		String query = "SELECT * FROM Customer WHERE username = ?";
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setString(1, username);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getString("username") != null) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public void addIncome(double earn) {
+		String query="INSERT INTO Income (earn) VALUES (?)";
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			preparedStatement.setDouble(1, earn);
+			
+			preparedStatement.executeUpdate();
+			return;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+	
+	public double getTotalIncome() {
+		String query = "SELECT * FROM Income";
+		double totalIncome = 0;
+		
+		try {
+			preparedStatement = con.prepareStatement(query);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			while(rs.next()) {
+				totalIncome += rs.getDouble("earn");
+			}
+			return totalIncome;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
 		}
 	}
 }

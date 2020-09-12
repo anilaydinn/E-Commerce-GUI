@@ -17,6 +17,9 @@ import java.io.IOException;
 
 import javax.swing.JScrollBar;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TechnologyProductsPage extends JFrame {
 
@@ -77,9 +80,9 @@ public class TechnologyProductsPage extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				Computer computer = (Computer) productFactory.getProduct("COMPUTER");
 				computer.setBrand("Asus");
-				TechnologyProductDetailsPage productDetailsPage = new TechnologyProductDetailsPage(username,computer,pc1Icon);
+				ComputerProductDetailsPage computerProductDetailsPage = new ComputerProductDetailsPage(username,computer,pc1Icon);
 				setVisible(false);
-				productDetailsPage.setVisible(true);
+				computerProductDetailsPage.setVisible(true);
 			}
 		});
 		
@@ -122,9 +125,9 @@ public class TechnologyProductsPage extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				Computer computer = (Computer)productFactory.getProduct("COMPUTER");
 				computer.setBrand("Monster");
-				TechnologyProductDetailsPage productDetailsPage = new TechnologyProductDetailsPage(username,computer,pc2Icon);
+				ComputerProductDetailsPage computerProductDetailsPage = new ComputerProductDetailsPage(username,computer,pc2Icon);
 				setVisible(false);
-				productDetailsPage.setVisible(true);
+				computerProductDetailsPage.setVisible(true);
 			}
 		});
 		
@@ -167,9 +170,9 @@ public class TechnologyProductsPage extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				Computer computer = (Computer)productFactory.getProduct("COMPUTER");
 				computer.setBrand("Apple");
-				TechnologyProductDetailsPage productDetailsPage = new TechnologyProductDetailsPage(username,computer,pc3Icon);
+				ComputerProductDetailsPage computerProductDetailsPage = new ComputerProductDetailsPage(username,computer,pc3Icon);
 				setVisible(false);
-				productDetailsPage.setVisible(true);
+				computerProductDetailsPage.setVisible(true);
 			}
 		});
 		
@@ -248,9 +251,9 @@ public class TechnologyProductsPage extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				Phone phone = (Phone)productFactory.getProduct("PHONE");
 				phone.setBrand("Iphone");
-				TechnologyProductDetailsPage productDetailsPage = new TechnologyProductDetailsPage(username,phone,phone1Icon);
+				PhoneProductDetailsPage phoneProductDetailsPage = new PhoneProductDetailsPage(username,phone,phone1Icon);
 				setVisible(false);
-				productDetailsPage.setVisible(true);
+				phoneProductDetailsPage.setVisible(true);
 			}
 		});
 		
@@ -267,6 +270,37 @@ public class TechnologyProductsPage extends JFrame {
 		Image resizedImgPhone2 = imgPhone2.getScaledInstance(lblPhone2.getWidth(), lblPhone2.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon phone2Icon = new ImageIcon(resizedImgPhone2);
 		lblPhone2.setIcon(phone2Icon);
+		lblPhone2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Phone phone = (Phone)productFactory.getProduct("PHONE");
+				phone.setBrand("Xiaomi");
+				PhoneProductDetailsPage phoneProductDetailsPage = new PhoneProductDetailsPage(username, phone, phone2Icon);
+				setVisible(false);
+				phoneProductDetailsPage.setVisible(true);
+			}
+		});
 		
 		JLabel lblPhone3 = new JLabel("");
 		lblPhone3.setBounds(635, 277, 147, 142);
@@ -281,6 +315,48 @@ public class TechnologyProductsPage extends JFrame {
 		Image resizedImgPhone3 = imgPhone3.getScaledInstance(lblPhone3.getWidth(), lblPhone3.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon phone3Icon = new ImageIcon(resizedImgPhone3);
 		lblPhone3.setIcon(phone3Icon);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CategoryListPage categoryListPage = new CategoryListPage(username);
+				setVisible(false);
+				categoryListPage.setVisible(true);
+			}
+		});
+		btnBack.setBounds(12, 446, 136, 44);
+		contentPane.add(btnBack);
+		lblPhone3.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Phone phone = (Phone)productFactory.getProduct("PHONE");
+				phone.setBrand("Samsung");
+				PhoneProductDetailsPage phoneProductDetailsPage = new PhoneProductDetailsPage(username, phone, phone3Icon);
+				setVisible(false);
+				phoneProductDetailsPage.setVisible(true);
+			}
+		});
 	
 	}
 }
